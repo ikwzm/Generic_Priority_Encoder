@@ -40,8 +40,8 @@ entity  PRIORITY_ENCODER_SAMPLE is
     generic (
         MSB     : boolean := FALSE;
         D_LOW   : integer :=   0;
-        D_HIGH  : integer := 255;
-        Q_WIDTH : integer :=   8
+        D_HIGH  : integer :=  63;
+        Q_WIDTH : integer :=   6
     );
     port (
         CLK     : in  std_logic;
@@ -69,7 +69,7 @@ begin
             Priority_Encode_To_Binary_Intricately(
                 High_to_Low => MSB,
                 Binary_Len  => Q_WIDTH,
-                Reduce_Len  => 16,
+                Reduce_Len  =>  8,
                 Min_Dec_Len => 20,
                 Max_Dec_Len => 64,
                 Data        => i_data,

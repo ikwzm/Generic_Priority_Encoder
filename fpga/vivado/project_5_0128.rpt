@@ -1,0 +1,151 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:45:05 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_5_0128.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |        350 |        350 |       0 |    0 | 258 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 | 129 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |        349 |        349 |       0 |    0 | 129 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:45:16 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_5_0128.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.522ns  (required time - arrival time)
+  Source:                 I_REG_reg[66]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            U/MODE_5.Q_reg[125]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (CLK rise@5.000ns - CLK rise@0.000ns)
+  Data Path Delay:        4.488ns  (logic 3.385ns (75.430%)  route 1.103ns (24.569%))
+  Logic Levels:           18  (CARRY4=16 LUT1=1 LUT3=1)
+  Clock Path Skew:        -0.032ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.453ns = ( 9.453 - 5.000 ) 
+    Source Clock Delay      (SCD):    4.978ns
+    Clock Pessimism Removal (CPR):    0.493ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=258, routed)         1.755     4.978    CLK_IBUF_BUFG
+    SLICE_X40Y0          FDCE                                         r  I_REG_reg[66]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y0          FDCE (Prop_fdce_C_Q)         0.419     5.397 f  I_REG_reg[66]/Q
+                         net (fo=5, routed)           0.513     5.910    U/Q[66]
+    SLICE_X41Y0          LUT1 (Prop_lut1_I0_O)        0.299     6.209 r  U/minusOp__124_carry_i_3/O
+                         net (fo=1, routed)           0.000     6.209    U/minusOp__124_carry_i_3_n_0
+    SLICE_X41Y0          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     6.759 r  U/minusOp__124_carry/CO[3]
+                         net (fo=1, routed)           0.000     6.759    U/minusOp__124_carry_n_0
+    SLICE_X41Y1          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.873 r  U/minusOp__124_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     6.873    U/minusOp__124_carry__0_n_0
+    SLICE_X41Y2          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.987 r  U/minusOp__124_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     6.987    U/minusOp__124_carry__1_n_0
+    SLICE_X41Y3          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.101 r  U/minusOp__124_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.101    U/minusOp__124_carry__2_n_0
+    SLICE_X41Y4          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.215 r  U/minusOp__124_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     7.215    U/minusOp__124_carry__3_n_0
+    SLICE_X41Y5          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.329 r  U/minusOp__124_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     7.329    U/minusOp__124_carry__4_n_0
+    SLICE_X41Y6          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.443 r  U/minusOp__124_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     7.443    U/minusOp__124_carry__5_n_0
+    SLICE_X41Y7          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.557 r  U/minusOp__124_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     7.557    U/minusOp__124_carry__6_n_0
+    SLICE_X41Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.671 r  U/minusOp__124_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     7.671    U/minusOp__124_carry__7_n_0
+    SLICE_X41Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.785 r  U/minusOp__124_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     7.785    U/minusOp__124_carry__8_n_0
+    SLICE_X41Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.899 r  U/minusOp__124_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     7.899    U/minusOp__124_carry__9_n_0
+    SLICE_X41Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.013 r  U/minusOp__124_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     8.013    U/minusOp__124_carry__10_n_0
+    SLICE_X41Y12         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.127 r  U/minusOp__124_carry__11/CO[3]
+                         net (fo=1, routed)           0.000     8.127    U/minusOp__124_carry__11_n_0
+    SLICE_X41Y13         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.241 r  U/minusOp__124_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     8.241    U/minusOp__124_carry__12_n_0
+    SLICE_X41Y14         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.355 r  U/minusOp__124_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     8.355    U/minusOp__124_carry__13_n_0
+    SLICE_X41Y15         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     8.577 f  U/minusOp__124_carry__14/O[0]
+                         net (fo=1, routed)           0.590     9.167    U/minusOp__124_carry__14_n_7
+    SLICE_X42Y15         LUT3 (Prop_lut3_I0_O)        0.299     9.466 r  U/MODE_5.Q[125]_i_1/O
+                         net (fo=1, routed)           0.000     9.466    U/o_data[125]
+    SLICE_X42Y15         FDCE                                         r  U/MODE_5.Q_reg[125]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)        5.000     5.000 r  
+    U14                                               0.000     5.000 r  CLK (IN)
+                         net (fo=0)                   0.000     5.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912     5.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880     7.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     7.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=258, routed)         1.570     9.453    U/CLK
+    SLICE_X42Y15         FDCE                                         r  U/MODE_5.Q_reg[125]/C
+                         clock pessimism              0.493     9.946    
+                         clock uncertainty           -0.035     9.911    
+    SLICE_X42Y15         FDCE (Setup_fdce_C_D)        0.077     9.988    U/MODE_5.Q_reg[125]
+  -------------------------------------------------------------------
+                         required time                          9.988    
+                         arrival time                          -9.466    
+  -------------------------------------------------------------------
+                         slack                                  0.522    
+
+
+
+

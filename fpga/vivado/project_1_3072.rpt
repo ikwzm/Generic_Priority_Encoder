@@ -1,0 +1,215 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 15:11:19 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_1_3072.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |       5294 |       5294 |       0 |    0 | 6146 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 | 3073 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |       5293 |       5293 |       0 |    0 | 3073 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 15:11:31 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_1_3072.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -20.976ns  (required time - arrival time)
+  Source:                 I_REG_reg[43]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            U/MODE_1.Q_reg[3067]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (CLK rise@10.000ns - CLK rise@0.000ns)
+  Data Path Delay:        30.839ns  (logic 7.786ns (25.247%)  route 23.053ns (74.753%))
+  Logic Levels:           58  (LUT2=1 LUT4=1 LUT6=56)
+  Clock Path Skew:        -0.134ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.379ns = ( 14.379 - 10.000 ) 
+    Source Clock Delay      (SCD):    4.968ns
+    Clock Pessimism Removal (CPR):    0.455ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=6146, routed)        1.745     4.968    CLK_IBUF_BUFG
+    SLICE_X37Y15         FDCE                                         r  I_REG_reg[43]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y15         FDCE (Prop_fdce_C_Q)         0.419     5.387 f  I_REG_reg[43]/Q
+                         net (fo=7, routed)           0.677     6.064    U/Q[43]
+    SLICE_X36Y15         LUT4 (Prop_lut4_I0_O)        0.299     6.363 r  U/MODE_1.Q[52]_i_5/O
+                         net (fo=2, routed)           1.028     7.391    U/MODE_1.Q[52]_i_5_n_0
+    SLICE_X35Y12         LUT6 (Prop_lut6_I0_O)        0.124     7.515 r  U/MODE_1.Q[101]_i_7/O
+                         net (fo=2, routed)           0.821     8.336    U/MODE_1.Q[101]_i_7_n_0
+    SLICE_X35Y10         LUT6 (Prop_lut6_I5_O)        0.124     8.460 r  U/MODE_1.Q[101]_i_2/O
+                         net (fo=8, routed)           0.166     8.626    U/p_7180_in
+    SLICE_X35Y10         LUT6 (Prop_lut6_I3_O)        0.124     8.750 r  U/MODE_1.Q[111]_i_2/O
+                         net (fo=9, routed)           0.425     9.176    U/p_7154_in
+    SLICE_X35Y8          LUT6 (Prop_lut6_I3_O)        0.124     9.300 r  U/MODE_1.Q[218]_i_5/O
+                         net (fo=1, routed)           0.263     9.563    U/p_6936_in
+    SLICE_X35Y8          LUT6 (Prop_lut6_I3_O)        0.124     9.687 r  U/MODE_1.Q[218]_i_2/O
+                         net (fo=10, routed)          0.514    10.200    U/p_6895_in
+    SLICE_X27Y7          LUT6 (Prop_lut6_I2_O)        0.124    10.324 r  U/MODE_1.Q[333]_i_5/O
+                         net (fo=2, routed)           0.529    10.854    U/MODE_1.Q[333]_i_5_n_0
+    SLICE_X23Y7          LUT6 (Prop_lut6_I2_O)        0.124    10.978 r  U/MODE_1.Q[333]_i_2/O
+                         net (fo=10, routed)          0.530    11.507    U/p_6618_in
+    SLICE_X17Y7          LUT6 (Prop_lut6_I3_O)        0.124    11.631 r  U/MODE_1.Q[464]_i_6/O
+                         net (fo=4, routed)           0.164    11.795    U/MODE_1.Q[464]_i_6_n_0
+    SLICE_X17Y7          LUT6 (Prop_lut6_I3_O)        0.124    11.919 r  U/MODE_1.Q[464]_i_2/O
+                         net (fo=9, routed)           0.167    12.086    U/p_6301_in
+    SLICE_X17Y7          LUT6 (Prop_lut6_I3_O)        0.124    12.210 r  U/MODE_1.Q[503]_i_2/O
+                         net (fo=9, routed)           0.443    12.653    U/p_6207_in
+    SLICE_X17Y9          LUT6 (Prop_lut6_I3_O)        0.124    12.777 r  U/MODE_1.Q[596]_i_2/O
+                         net (fo=8, routed)           0.161    12.938    U/p_5985_in
+    SLICE_X17Y9          LUT6 (Prop_lut6_I3_O)        0.124    13.062 r  U/MODE_1.Q[606]_i_2/O
+                         net (fo=9, routed)           0.508    13.570    U/p_5958_in
+    SLICE_X23Y13         LUT6 (Prop_lut6_I3_O)        0.124    13.694 r  U/MODE_1.Q[713]_i_5/O
+                         net (fo=1, routed)           0.287    13.982    U/p_5741_in
+    SLICE_X25Y13         LUT6 (Prop_lut6_I3_O)        0.124    14.106 r  U/MODE_1.Q[713]_i_2/O
+                         net (fo=10, routed)          0.306    14.412    U/p_5700_in
+    SLICE_X23Y13         LUT6 (Prop_lut6_I2_O)        0.124    14.536 r  U/MODE_1.Q[828]_i_5/O
+                         net (fo=2, routed)           0.161    14.697    U/MODE_1.Q[828]_i_5_n_0
+    SLICE_X23Y13         LUT6 (Prop_lut6_I2_O)        0.124    14.821 r  U/MODE_1.Q[828]_i_2/O
+                         net (fo=10, routed)          0.363    15.184    U/p_5423_in
+    SLICE_X22Y13         LUT6 (Prop_lut6_I3_O)        0.124    15.308 r  U/MODE_1.Q[959]_i_6/O
+                         net (fo=4, routed)           0.309    15.617    U/MODE_1.Q[959]_i_6_n_0
+    SLICE_X22Y14         LUT6 (Prop_lut6_I3_O)        0.124    15.741 r  U/MODE_1.Q[959]_i_2/O
+                         net (fo=9, routed)           0.314    16.055    U/p_5106_in
+    SLICE_X22Y16         LUT6 (Prop_lut6_I3_O)        0.124    16.179 r  U/MODE_1.Q[998]_i_2/O
+                         net (fo=9, routed)           0.504    16.683    U/p_5012_in
+    SLICE_X23Y23         LUT6 (Prop_lut6_I3_O)        0.124    16.807 r  U/MODE_1.Q[1091]_i_2/O
+                         net (fo=8, routed)           0.312    17.119    U/p_4790_in
+    SLICE_X22Y24         LUT6 (Prop_lut6_I3_O)        0.124    17.243 r  U/MODE_1.Q[1101]_i_2/O
+                         net (fo=9, routed)           0.498    17.741    U/p_4763_in
+    SLICE_X22Y24         LUT6 (Prop_lut6_I3_O)        0.124    17.865 r  U/MODE_1.Q[1208]_i_5/O
+                         net (fo=1, routed)           0.159    18.023    U/p_4546_in
+    SLICE_X22Y24         LUT6 (Prop_lut6_I3_O)        0.124    18.147 r  U/MODE_1.Q[1208]_i_2/O
+                         net (fo=10, routed)          0.185    18.333    U/p_4505_in
+    SLICE_X22Y24         LUT6 (Prop_lut6_I2_O)        0.124    18.457 r  U/MODE_1.Q[1323]_i_5/O
+                         net (fo=2, routed)           0.443    18.900    U/MODE_1.Q[1323]_i_5_n_0
+    SLICE_X23Y23         LUT6 (Prop_lut6_I2_O)        0.124    19.024 r  U/MODE_1.Q[1323]_i_2/O
+                         net (fo=10, routed)          0.162    19.186    U/p_4227_in
+    SLICE_X23Y23         LUT6 (Prop_lut6_I3_O)        0.124    19.310 r  U/MODE_1.Q[1454]_i_6/O
+                         net (fo=4, routed)           0.299    19.609    U/MODE_1.Q[1454]_i_6_n_0
+    SLICE_X23Y24         LUT6 (Prop_lut6_I3_O)        0.124    19.733 r  U/MODE_1.Q[1454]_i_2/O
+                         net (fo=9, routed)           0.332    20.065    U/p_3911_in
+    SLICE_X23Y25         LUT6 (Prop_lut6_I3_O)        0.124    20.189 r  U/MODE_1.Q[1493]_i_2/O
+                         net (fo=9, routed)           0.174    20.363    U/p_3817_in
+    SLICE_X23Y25         LUT6 (Prop_lut6_I3_O)        0.124    20.487 r  U/MODE_1.Q[1586]_i_2/O
+                         net (fo=8, routed)           0.472    20.959    U/p_3595_in
+    SLICE_X17Y25         LUT6 (Prop_lut6_I3_O)        0.124    21.083 r  U/MODE_1.Q[1596]_i_2/O
+                         net (fo=9, routed)           0.168    21.251    U/p_3568_in
+    SLICE_X17Y25         LUT6 (Prop_lut6_I3_O)        0.124    21.375 r  U/MODE_1.Q[1703]_i_5/O
+                         net (fo=1, routed)           0.263    21.638    U/p_3351_in
+    SLICE_X17Y25         LUT6 (Prop_lut6_I3_O)        0.124    21.762 r  U/MODE_1.Q[1703]_i_2/O
+                         net (fo=10, routed)          0.399    22.161    U/p_3310_in
+    SLICE_X16Y25         LUT6 (Prop_lut6_I2_O)        0.124    22.285 r  U/MODE_1.Q[1818]_i_5/O
+                         net (fo=2, routed)           0.294    22.579    U/MODE_1.Q[1818]_i_5_n_0
+    SLICE_X16Y25         LUT6 (Prop_lut6_I2_O)        0.124    22.703 r  U/MODE_1.Q[1818]_i_2/O
+                         net (fo=10, routed)          0.496    23.199    U/p_3032_in
+    SLICE_X16Y24         LUT6 (Prop_lut6_I3_O)        0.124    23.323 r  U/MODE_1.Q[1949]_i_6/O
+                         net (fo=4, routed)           0.198    23.521    U/MODE_1.Q[1949]_i_6_n_0
+    SLICE_X16Y24         LUT6 (Prop_lut6_I3_O)        0.124    23.645 r  U/MODE_1.Q[1949]_i_2/O
+                         net (fo=9, routed)           0.353    23.998    U/p_2716_in
+    SLICE_X19Y23         LUT6 (Prop_lut6_I3_O)        0.124    24.122 r  U/MODE_1.Q[1988]_i_2/O
+                         net (fo=9, routed)           0.317    24.439    U/p_2622_in
+    SLICE_X19Y24         LUT6 (Prop_lut6_I3_O)        0.124    24.563 r  U/MODE_1.Q[2081]_i_2/O
+                         net (fo=8, routed)           0.163    24.726    U/p_2400_in
+    SLICE_X19Y24         LUT6 (Prop_lut6_I3_O)        0.124    24.850 r  U/MODE_1.Q[2091]_i_2/O
+                         net (fo=9, routed)           0.744    25.593    U/p_2373_in
+    SLICE_X28Y24         LUT6 (Prop_lut6_I3_O)        0.124    25.717 r  U/MODE_1.Q[2198]_i_5/O
+                         net (fo=1, routed)           0.295    26.013    U/p_2156_in
+    SLICE_X30Y24         LUT6 (Prop_lut6_I3_O)        0.124    26.137 r  U/MODE_1.Q[2198]_i_2/O
+                         net (fo=10, routed)          0.208    26.345    U/p_2115_in
+    SLICE_X30Y24         LUT6 (Prop_lut6_I2_O)        0.124    26.469 r  U/MODE_1.Q[2313]_i_5/O
+                         net (fo=2, routed)           0.294    26.763    U/MODE_1.Q[2313]_i_5_n_0
+    SLICE_X30Y24         LUT6 (Prop_lut6_I2_O)        0.124    26.887 r  U/MODE_1.Q[2313]_i_2/O
+                         net (fo=10, routed)          0.334    27.221    U/p_1837_in
+    SLICE_X28Y24         LUT6 (Prop_lut6_I3_O)        0.124    27.345 r  U/MODE_1.Q[2444]_i_6/O
+                         net (fo=4, routed)           0.966    28.311    U/MODE_1.Q[2444]_i_6_n_0
+    SLICE_X19Y15         LUT6 (Prop_lut6_I3_O)        0.124    28.435 r  U/MODE_1.Q[2444]_i_2/O
+                         net (fo=9, routed)           0.301    28.736    U/p_1521_in
+    SLICE_X19Y15         LUT6 (Prop_lut6_I3_O)        0.124    28.860 r  U/MODE_1.Q[2483]_i_2/O
+                         net (fo=9, routed)           0.484    29.344    U/p_1427_in
+    SLICE_X15Y13         LUT6 (Prop_lut6_I3_O)        0.124    29.468 r  U/MODE_1.Q[2576]_i_2/O
+                         net (fo=8, routed)           0.178    29.646    U/p_1205_in
+    SLICE_X15Y13         LUT6 (Prop_lut6_I3_O)        0.124    29.770 r  U/MODE_1.Q[2586]_i_2/O
+                         net (fo=9, routed)           0.933    30.703    U/p_1178_in
+    SLICE_X11Y5          LUT6 (Prop_lut6_I3_O)        0.124    30.827 r  U/MODE_1.Q[2693]_i_5/O
+                         net (fo=1, routed)           0.154    30.981    U/p_961_in
+    SLICE_X11Y5          LUT6 (Prop_lut6_I3_O)        0.124    31.105 r  U/MODE_1.Q[2693]_i_2/O
+                         net (fo=10, routed)          0.611    31.716    U/p_920_in
+    SLICE_X14Y5          LUT6 (Prop_lut6_I2_O)        0.124    31.840 r  U/MODE_1.Q[2869]_i_13/O
+                         net (fo=2, routed)           0.315    32.155    U/MODE_1.Q[2869]_i_13_n_0
+    SLICE_X16Y5          LUT6 (Prop_lut6_I2_O)        0.124    32.279 r  U/MODE_1.Q[2869]_i_4/O
+                         net (fo=11, routed)          0.765    33.044    U/p_642_in
+    SLICE_X26Y5          LUT6 (Prop_lut6_I3_O)        0.124    33.168 r  U/MODE_1.Q[2970]_i_11/O
+                         net (fo=4, routed)           0.458    33.627    U/MODE_1.Q[2970]_i_11_n_0
+    SLICE_X26Y8          LUT6 (Prop_lut6_I3_O)        0.124    33.751 r  U/MODE_1.Q[2970]_i_4/O
+                         net (fo=18, routed)          0.373    34.124    U/p_326_in
+    SLICE_X27Y8          LUT6 (Prop_lut6_I3_O)        0.124    34.248 r  U/MODE_1.Q[2979]_i_2/O
+                         net (fo=15, routed)          0.723    34.971    U/p_232_in
+    SLICE_X32Y12         LUT6 (Prop_lut6_I3_O)        0.124    35.095 r  U/MODE_1.Q[3071]_i_2/O
+                         net (fo=5, routed)           0.588    35.683    U/p_10_in
+    SLICE_X35Y12         LUT2 (Prop_lut2_I0_O)        0.124    35.807 r  U/MODE_1.Q[3067]_i_1/O
+                         net (fo=1, routed)           0.000    35.807    U/result11_out
+    SLICE_X35Y12         FDCE                                         r  U/MODE_1.Q_reg[3067]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)       10.000    10.000 r  
+    U14                                               0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912    10.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880    12.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=6146, routed)        1.496    14.379    U/CLK
+    SLICE_X35Y12         FDCE                                         r  U/MODE_1.Q_reg[3067]/C
+                         clock pessimism              0.455    14.834    
+                         clock uncertainty           -0.035    14.799    
+    SLICE_X35Y12         FDCE (Setup_fdce_C_D)        0.032    14.831    U/MODE_1.Q_reg[3067]
+  -------------------------------------------------------------------
+                         required time                         14.831    
+                         arrival time                         -35.807    
+  -------------------------------------------------------------------
+                         slack                                -20.976    
+
+
+
+

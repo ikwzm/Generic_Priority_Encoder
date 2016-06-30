@@ -1,0 +1,487 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:43:29 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_4_0512.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |       1249 |       1249 |       0 |    0 | 1026 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 |  513 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |       1248 |       1248 |       0 |    0 |  513 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:43:39 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_4_0512.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -15.416ns  (required time - arrival time)
+  Source:                 I_REG_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            U/MODE_4.Q_reg[510]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (CLK rise@5.000ns - CLK rise@0.000ns)
+  Data Path Delay:        20.222ns  (logic 17.015ns (84.143%)  route 3.207ns (15.857%))
+  Logic Levels:           130  (CARRY4=128 LUT1=1 LUT2=1)
+  Clock Path Skew:        -0.190ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.447ns = ( 9.447 - 5.000 ) 
+    Source Clock Delay      (SCD):    4.978ns
+    Clock Pessimism Removal (CPR):    0.340ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=1026, routed)        1.755     4.978    CLK_IBUF_BUFG
+    SLICE_X41Y1          FDCE                                         r  I_REG_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y1          FDCE (Prop_fdce_C_Q)         0.419     5.397 f  I_REG_reg[2]/Q
+                         net (fo=5, routed)           0.345     5.742    U/Q[2]
+    SLICE_X38Y0          LUT1 (Prop_lut1_I0_O)        0.299     6.041 r  U/MODE_4.Q[4]_i_5/O
+                         net (fo=1, routed)           0.000     6.041    U/MODE_4.Q[4]_i_5_n_0
+    SLICE_X38Y0          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.574 r  U/MODE_4.Q_reg[4]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     6.574    U/MODE_4.Q_reg[4]_i_2_n_0
+    SLICE_X38Y1          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.691 r  U/MODE_4.Q_reg[8]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     6.691    U/MODE_4.Q_reg[8]_i_2_n_0
+    SLICE_X38Y2          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.808 r  U/MODE_4.Q_reg[12]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     6.808    U/MODE_4.Q_reg[12]_i_2_n_0
+    SLICE_X38Y3          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.925 r  U/MODE_4.Q_reg[16]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     6.925    U/MODE_4.Q_reg[16]_i_2_n_0
+    SLICE_X38Y4          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.042 r  U/MODE_4.Q_reg[20]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.042    U/MODE_4.Q_reg[20]_i_2_n_0
+    SLICE_X38Y5          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.159 r  U/MODE_4.Q_reg[24]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.159    U/MODE_4.Q_reg[24]_i_2_n_0
+    SLICE_X38Y6          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.276 r  U/MODE_4.Q_reg[28]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.276    U/MODE_4.Q_reg[28]_i_2_n_0
+    SLICE_X38Y7          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.393 r  U/MODE_4.Q_reg[32]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.393    U/MODE_4.Q_reg[32]_i_2_n_0
+    SLICE_X38Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.510 r  U/MODE_4.Q_reg[36]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.510    U/MODE_4.Q_reg[36]_i_2_n_0
+    SLICE_X38Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.627 r  U/MODE_4.Q_reg[40]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.627    U/MODE_4.Q_reg[40]_i_2_n_0
+    SLICE_X38Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.744 r  U/MODE_4.Q_reg[44]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.744    U/MODE_4.Q_reg[44]_i_2_n_0
+    SLICE_X38Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.861 r  U/MODE_4.Q_reg[48]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.861    U/MODE_4.Q_reg[48]_i_2_n_0
+    SLICE_X38Y12         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.978 r  U/MODE_4.Q_reg[52]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.978    U/MODE_4.Q_reg[52]_i_2_n_0
+    SLICE_X38Y13         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.095 r  U/MODE_4.Q_reg[56]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.095    U/MODE_4.Q_reg[56]_i_2_n_0
+    SLICE_X38Y14         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.212 r  U/MODE_4.Q_reg[60]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.212    U/MODE_4.Q_reg[60]_i_2_n_0
+    SLICE_X38Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.329 r  U/MODE_4.Q_reg[64]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.329    U/MODE_4.Q_reg[64]_i_2_n_0
+    SLICE_X38Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.446 r  U/MODE_4.Q_reg[68]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.446    U/MODE_4.Q_reg[68]_i_2_n_0
+    SLICE_X38Y17         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.563 r  U/MODE_4.Q_reg[72]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.563    U/MODE_4.Q_reg[72]_i_2_n_0
+    SLICE_X38Y18         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.680 r  U/MODE_4.Q_reg[76]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.680    U/MODE_4.Q_reg[76]_i_2_n_0
+    SLICE_X38Y19         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.797 r  U/MODE_4.Q_reg[80]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.797    U/MODE_4.Q_reg[80]_i_2_n_0
+    SLICE_X38Y20         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.914 r  U/MODE_4.Q_reg[84]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     8.914    U/MODE_4.Q_reg[84]_i_2_n_0
+    SLICE_X38Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.031 r  U/MODE_4.Q_reg[88]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.031    U/MODE_4.Q_reg[88]_i_2_n_0
+    SLICE_X38Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.148 r  U/MODE_4.Q_reg[92]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.148    U/MODE_4.Q_reg[92]_i_2_n_0
+    SLICE_X38Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.265 r  U/MODE_4.Q_reg[96]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.265    U/MODE_4.Q_reg[96]_i_2_n_0
+    SLICE_X38Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.382 r  U/MODE_4.Q_reg[100]_i_2/CO[3]
+                         net (fo=1, routed)           0.009     9.391    U/MODE_4.Q_reg[100]_i_2_n_0
+    SLICE_X38Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.508 r  U/MODE_4.Q_reg[104]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.508    U/MODE_4.Q_reg[104]_i_2_n_0
+    SLICE_X38Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.625 r  U/MODE_4.Q_reg[108]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.625    U/MODE_4.Q_reg[108]_i_2_n_0
+    SLICE_X38Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.742 r  U/MODE_4.Q_reg[112]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.742    U/MODE_4.Q_reg[112]_i_2_n_0
+    SLICE_X38Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.859 r  U/MODE_4.Q_reg[116]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.859    U/MODE_4.Q_reg[116]_i_2_n_0
+    SLICE_X38Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     9.976 r  U/MODE_4.Q_reg[120]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     9.976    U/MODE_4.Q_reg[120]_i_2_n_0
+    SLICE_X38Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.093 r  U/MODE_4.Q_reg[124]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.093    U/MODE_4.Q_reg[124]_i_2_n_0
+    SLICE_X38Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.210 r  U/MODE_4.Q_reg[128]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.210    U/MODE_4.Q_reg[128]_i_2_n_0
+    SLICE_X38Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.327 r  U/MODE_4.Q_reg[132]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.327    U/MODE_4.Q_reg[132]_i_2_n_0
+    SLICE_X38Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.444 r  U/MODE_4.Q_reg[136]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.444    U/MODE_4.Q_reg[136]_i_2_n_0
+    SLICE_X38Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.561 r  U/MODE_4.Q_reg[140]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.561    U/MODE_4.Q_reg[140]_i_2_n_0
+    SLICE_X38Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.678 r  U/MODE_4.Q_reg[144]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.678    U/MODE_4.Q_reg[144]_i_2_n_0
+    SLICE_X38Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.795 r  U/MODE_4.Q_reg[148]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.795    U/MODE_4.Q_reg[148]_i_2_n_0
+    SLICE_X38Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    10.912 r  U/MODE_4.Q_reg[152]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    10.912    U/MODE_4.Q_reg[152]_i_2_n_0
+    SLICE_X38Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.029 r  U/MODE_4.Q_reg[156]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.029    U/MODE_4.Q_reg[156]_i_2_n_0
+    SLICE_X38Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.146 r  U/MODE_4.Q_reg[160]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.146    U/MODE_4.Q_reg[160]_i_2_n_0
+    SLICE_X38Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.263 r  U/MODE_4.Q_reg[164]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.263    U/MODE_4.Q_reg[164]_i_2_n_0
+    SLICE_X38Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.380 r  U/MODE_4.Q_reg[168]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.380    U/MODE_4.Q_reg[168]_i_2_n_0
+    SLICE_X38Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.497 r  U/MODE_4.Q_reg[172]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.497    U/MODE_4.Q_reg[172]_i_2_n_0
+    SLICE_X38Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.614 r  U/MODE_4.Q_reg[176]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.614    U/MODE_4.Q_reg[176]_i_2_n_0
+    SLICE_X38Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.731 r  U/MODE_4.Q_reg[180]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.731    U/MODE_4.Q_reg[180]_i_2_n_0
+    SLICE_X38Y45         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.848 r  U/MODE_4.Q_reg[184]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.848    U/MODE_4.Q_reg[184]_i_2_n_0
+    SLICE_X38Y46         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.965 r  U/MODE_4.Q_reg[188]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.965    U/MODE_4.Q_reg[188]_i_2_n_0
+    SLICE_X38Y47         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.082 r  U/MODE_4.Q_reg[192]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.082    U/MODE_4.Q_reg[192]_i_2_n_0
+    SLICE_X38Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.199 r  U/MODE_4.Q_reg[196]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.199    U/MODE_4.Q_reg[196]_i_2_n_0
+    SLICE_X38Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.316 r  U/MODE_4.Q_reg[200]_i_2/CO[3]
+                         net (fo=1, routed)           0.001    12.316    U/MODE_4.Q_reg[200]_i_2_n_0
+    SLICE_X38Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.433 r  U/MODE_4.Q_reg[204]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.433    U/MODE_4.Q_reg[204]_i_2_n_0
+    SLICE_X38Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.550 r  U/MODE_4.Q_reg[208]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.550    U/MODE_4.Q_reg[208]_i_2_n_0
+    SLICE_X38Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.667 r  U/MODE_4.Q_reg[212]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.667    U/MODE_4.Q_reg[212]_i_2_n_0
+    SLICE_X38Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.784 r  U/MODE_4.Q_reg[216]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.784    U/MODE_4.Q_reg[216]_i_2_n_0
+    SLICE_X38Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.901 r  U/MODE_4.Q_reg[220]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.901    U/MODE_4.Q_reg[220]_i_2_n_0
+    SLICE_X38Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.018 r  U/MODE_4.Q_reg[224]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.018    U/MODE_4.Q_reg[224]_i_2_n_0
+    SLICE_X38Y56         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.135 r  U/MODE_4.Q_reg[228]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.135    U/MODE_4.Q_reg[228]_i_2_n_0
+    SLICE_X38Y57         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.252 r  U/MODE_4.Q_reg[232]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.252    U/MODE_4.Q_reg[232]_i_2_n_0
+    SLICE_X38Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.369 r  U/MODE_4.Q_reg[236]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.369    U/MODE_4.Q_reg[236]_i_2_n_0
+    SLICE_X38Y59         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.486 r  U/MODE_4.Q_reg[240]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.486    U/MODE_4.Q_reg[240]_i_2_n_0
+    SLICE_X38Y60         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.603 r  U/MODE_4.Q_reg[244]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.603    U/MODE_4.Q_reg[244]_i_2_n_0
+    SLICE_X38Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.720 r  U/MODE_4.Q_reg[248]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.720    U/MODE_4.Q_reg[248]_i_2_n_0
+    SLICE_X38Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.837 r  U/MODE_4.Q_reg[252]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.837    U/MODE_4.Q_reg[252]_i_2_n_0
+    SLICE_X38Y63         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    13.954 r  U/MODE_4.Q_reg[256]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.954    U/MODE_4.Q_reg[256]_i_2_n_0
+    SLICE_X38Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.071 r  U/MODE_4.Q_reg[260]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.071    U/MODE_4.Q_reg[260]_i_2_n_0
+    SLICE_X38Y65         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.188 r  U/MODE_4.Q_reg[264]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.188    U/MODE_4.Q_reg[264]_i_2_n_0
+    SLICE_X38Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.305 r  U/MODE_4.Q_reg[268]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.305    U/MODE_4.Q_reg[268]_i_2_n_0
+    SLICE_X38Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.422 r  U/MODE_4.Q_reg[272]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.422    U/MODE_4.Q_reg[272]_i_2_n_0
+    SLICE_X38Y68         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.539 r  U/MODE_4.Q_reg[276]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.539    U/MODE_4.Q_reg[276]_i_2_n_0
+    SLICE_X38Y69         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.656 r  U/MODE_4.Q_reg[280]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.656    U/MODE_4.Q_reg[280]_i_2_n_0
+    SLICE_X38Y70         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.773 r  U/MODE_4.Q_reg[284]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.773    U/MODE_4.Q_reg[284]_i_2_n_0
+    SLICE_X38Y71         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    14.890 r  U/MODE_4.Q_reg[288]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.890    U/MODE_4.Q_reg[288]_i_2_n_0
+    SLICE_X38Y72         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.007 r  U/MODE_4.Q_reg[292]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.007    U/MODE_4.Q_reg[292]_i_2_n_0
+    SLICE_X38Y73         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.124 r  U/MODE_4.Q_reg[296]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.124    U/MODE_4.Q_reg[296]_i_2_n_0
+    SLICE_X38Y74         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.241 r  U/MODE_4.Q_reg[300]_i_2/CO[3]
+                         net (fo=1, routed)           0.009    15.250    U/MODE_4.Q_reg[300]_i_2_n_0
+    SLICE_X38Y75         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.367 r  U/MODE_4.Q_reg[304]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.367    U/MODE_4.Q_reg[304]_i_2_n_0
+    SLICE_X38Y76         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.484 r  U/MODE_4.Q_reg[308]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.484    U/MODE_4.Q_reg[308]_i_2_n_0
+    SLICE_X38Y77         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.601 r  U/MODE_4.Q_reg[312]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.601    U/MODE_4.Q_reg[312]_i_2_n_0
+    SLICE_X38Y78         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.718 r  U/MODE_4.Q_reg[316]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.718    U/MODE_4.Q_reg[316]_i_2_n_0
+    SLICE_X38Y79         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.835 r  U/MODE_4.Q_reg[320]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.835    U/MODE_4.Q_reg[320]_i_2_n_0
+    SLICE_X38Y80         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    15.952 r  U/MODE_4.Q_reg[324]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.952    U/MODE_4.Q_reg[324]_i_2_n_0
+    SLICE_X38Y81         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.069 r  U/MODE_4.Q_reg[328]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.069    U/MODE_4.Q_reg[328]_i_2_n_0
+    SLICE_X38Y82         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.186 r  U/MODE_4.Q_reg[332]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.186    U/MODE_4.Q_reg[332]_i_2_n_0
+    SLICE_X38Y83         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.303 r  U/MODE_4.Q_reg[336]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.303    U/MODE_4.Q_reg[336]_i_2_n_0
+    SLICE_X38Y84         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.420 r  U/MODE_4.Q_reg[340]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.420    U/MODE_4.Q_reg[340]_i_2_n_0
+    SLICE_X38Y85         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.537 r  U/MODE_4.Q_reg[344]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.537    U/MODE_4.Q_reg[344]_i_2_n_0
+    SLICE_X38Y86         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.654 r  U/MODE_4.Q_reg[348]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.654    U/MODE_4.Q_reg[348]_i_2_n_0
+    SLICE_X38Y87         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.771 r  U/MODE_4.Q_reg[352]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.771    U/MODE_4.Q_reg[352]_i_2_n_0
+    SLICE_X38Y88         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    16.888 r  U/MODE_4.Q_reg[356]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.888    U/MODE_4.Q_reg[356]_i_2_n_0
+    SLICE_X38Y89         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.005 r  U/MODE_4.Q_reg[360]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.005    U/MODE_4.Q_reg[360]_i_2_n_0
+    SLICE_X38Y90         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.122 r  U/MODE_4.Q_reg[364]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.122    U/MODE_4.Q_reg[364]_i_2_n_0
+    SLICE_X38Y91         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.239 r  U/MODE_4.Q_reg[368]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.239    U/MODE_4.Q_reg[368]_i_2_n_0
+    SLICE_X38Y92         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.356 r  U/MODE_4.Q_reg[372]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.356    U/MODE_4.Q_reg[372]_i_2_n_0
+    SLICE_X38Y93         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.473 r  U/MODE_4.Q_reg[376]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.473    U/MODE_4.Q_reg[376]_i_2_n_0
+    SLICE_X38Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.590 r  U/MODE_4.Q_reg[380]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.590    U/MODE_4.Q_reg[380]_i_2_n_0
+    SLICE_X38Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.707 r  U/MODE_4.Q_reg[384]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.707    U/MODE_4.Q_reg[384]_i_2_n_0
+    SLICE_X38Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.824 r  U/MODE_4.Q_reg[388]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.824    U/MODE_4.Q_reg[388]_i_2_n_0
+    SLICE_X38Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    17.941 r  U/MODE_4.Q_reg[392]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    17.941    U/MODE_4.Q_reg[392]_i_2_n_0
+    SLICE_X38Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.058 r  U/MODE_4.Q_reg[396]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    18.058    U/MODE_4.Q_reg[396]_i_2_n_0
+    SLICE_X38Y99         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    18.175 r  U/MODE_4.Q_reg[400]_i_2/CO[3]
+                         net (fo=1, routed)           2.554    20.729    U/MODE_4.Q_reg[400]_i_2_n_0
+    SLICE_X39Y29         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580    21.309 r  U/MODE_4.Q_reg[404]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.309    U/MODE_4.Q_reg[404]_i_2_n_0
+    SLICE_X39Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.423 r  U/MODE_4.Q_reg[408]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.423    U/MODE_4.Q_reg[408]_i_2_n_0
+    SLICE_X39Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.537 r  U/MODE_4.Q_reg[412]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.537    U/MODE_4.Q_reg[412]_i_2_n_0
+    SLICE_X39Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.651 r  U/MODE_4.Q_reg[416]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.651    U/MODE_4.Q_reg[416]_i_2_n_0
+    SLICE_X39Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.765 r  U/MODE_4.Q_reg[420]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.765    U/MODE_4.Q_reg[420]_i_2_n_0
+    SLICE_X39Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.879 r  U/MODE_4.Q_reg[424]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.879    U/MODE_4.Q_reg[424]_i_2_n_0
+    SLICE_X39Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    21.993 r  U/MODE_4.Q_reg[428]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    21.993    U/MODE_4.Q_reg[428]_i_2_n_0
+    SLICE_X39Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.107 r  U/MODE_4.Q_reg[432]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.107    U/MODE_4.Q_reg[432]_i_2_n_0
+    SLICE_X39Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.221 r  U/MODE_4.Q_reg[436]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.221    U/MODE_4.Q_reg[436]_i_2_n_0
+    SLICE_X39Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.335 r  U/MODE_4.Q_reg[440]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.335    U/MODE_4.Q_reg[440]_i_2_n_0
+    SLICE_X39Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.449 r  U/MODE_4.Q_reg[444]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.449    U/MODE_4.Q_reg[444]_i_2_n_0
+    SLICE_X39Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.563 r  U/MODE_4.Q_reg[448]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.563    U/MODE_4.Q_reg[448]_i_2_n_0
+    SLICE_X39Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.677 r  U/MODE_4.Q_reg[452]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.677    U/MODE_4.Q_reg[452]_i_2_n_0
+    SLICE_X39Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.791 r  U/MODE_4.Q_reg[456]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.791    U/MODE_4.Q_reg[456]_i_2_n_0
+    SLICE_X39Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    22.905 r  U/MODE_4.Q_reg[460]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    22.905    U/MODE_4.Q_reg[460]_i_2_n_0
+    SLICE_X39Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.019 r  U/MODE_4.Q_reg[464]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.019    U/MODE_4.Q_reg[464]_i_2_n_0
+    SLICE_X39Y45         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.133 r  U/MODE_4.Q_reg[468]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.133    U/MODE_4.Q_reg[468]_i_2_n_0
+    SLICE_X39Y46         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.247 r  U/MODE_4.Q_reg[472]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.247    U/MODE_4.Q_reg[472]_i_2_n_0
+    SLICE_X39Y47         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.361 r  U/MODE_4.Q_reg[476]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.361    U/MODE_4.Q_reg[476]_i_2_n_0
+    SLICE_X39Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.475 r  U/MODE_4.Q_reg[480]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.475    U/MODE_4.Q_reg[480]_i_2_n_0
+    SLICE_X39Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.589 r  U/MODE_4.Q_reg[484]_i_2/CO[3]
+                         net (fo=1, routed)           0.001    23.590    U/MODE_4.Q_reg[484]_i_2_n_0
+    SLICE_X39Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.704 r  U/MODE_4.Q_reg[488]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.704    U/MODE_4.Q_reg[488]_i_2_n_0
+    SLICE_X39Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.818 r  U/MODE_4.Q_reg[492]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.818    U/MODE_4.Q_reg[492]_i_2_n_0
+    SLICE_X39Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    23.932 r  U/MODE_4.Q_reg[496]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    23.932    U/MODE_4.Q_reg[496]_i_2_n_0
+    SLICE_X39Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    24.046 r  U/MODE_4.Q_reg[500]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    24.046    U/MODE_4.Q_reg[500]_i_2_n_0
+    SLICE_X39Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    24.160 r  U/MODE_4.Q_reg[504]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    24.160    U/MODE_4.Q_reg[504]_i_2_n_0
+    SLICE_X39Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    24.274 r  U/MODE_4.Q_reg[508]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    24.274    U/MODE_4.Q_reg[508]_i_2_n_0
+    SLICE_X39Y56         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    24.608 f  U/MODE_4.Q_reg[511]_i_2/O[1]
+                         net (fo=1, routed)           0.289    24.897    U/MODE_4.Q_reg[511]_i_2_n_6
+    SLICE_X37Y56         LUT2 (Prop_lut2_I1_O)        0.303    25.200 r  U/MODE_4.Q[510]_i_1/O
+                         net (fo=1, routed)           0.000    25.200    U/MODE_4.Q[510]_i_1_n_0
+    SLICE_X37Y56         FDCE                                         r  U/MODE_4.Q_reg[510]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)        5.000     5.000 r  
+    U14                                               0.000     5.000 r  CLK (IN)
+                         net (fo=0)                   0.000     5.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912     5.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880     7.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     7.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=1026, routed)        1.565     9.447    U/CLK
+    SLICE_X37Y56         FDCE                                         r  U/MODE_4.Q_reg[510]/C
+                         clock pessimism              0.340     9.788    
+                         clock uncertainty           -0.035     9.752    
+    SLICE_X37Y56         FDCE (Setup_fdce_C_D)        0.031     9.783    U/MODE_4.Q_reg[510]
+  -------------------------------------------------------------------
+                         required time                          9.783    
+                         arrival time                         -25.200    
+  -------------------------------------------------------------------
+                         slack                                -15.416    
+
+
+
+

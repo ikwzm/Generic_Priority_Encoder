@@ -1,0 +1,295 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:39:10 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_4_0256.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |        615 |        615 |       0 |    0 | 514 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 | 257 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |        614 |        614 |       0 |    0 | 257 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:39:20 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_4_0256.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -4.693ns  (required time - arrival time)
+  Source:                 I_REG_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            U/MODE_4.Q_reg[254]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (CLK rise@5.000ns - CLK rise@0.000ns)
+  Data Path Delay:        9.542ns  (logic 8.817ns (92.404%)  route 0.725ns (7.596%))
+  Logic Levels:           66  (CARRY4=64 LUT1=1 LUT2=1)
+  Clock Path Skew:        -0.193ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.442ns = ( 9.442 - 5.000 ) 
+    Source Clock Delay      (SCD):    4.976ns
+    Clock Pessimism Removal (CPR):    0.340ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=514, routed)         1.753     4.976    CLK_IBUF_BUFG
+    SLICE_X39Y1          FDCE                                         r  I_REG_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y1          FDCE (Prop_fdce_C_Q)         0.456     5.432 f  I_REG_reg[1]/Q
+                         net (fo=5, routed)           0.413     5.845    U/Q[1]
+    SLICE_X37Y1          LUT1 (Prop_lut1_I0_O)        0.124     5.969 r  U/minusOp_carry_i_4/O
+                         net (fo=1, routed)           0.000     5.969    U/minusOp_carry_i_4_n_0
+    SLICE_X37Y1          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     6.501 r  U/minusOp_carry/CO[3]
+                         net (fo=1, routed)           0.000     6.501    U/minusOp_carry_n_0
+    SLICE_X37Y2          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.615 r  U/minusOp_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     6.615    U/minusOp_carry__0_n_0
+    SLICE_X37Y3          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.729 r  U/minusOp_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     6.729    U/minusOp_carry__1_n_0
+    SLICE_X37Y4          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.843 r  U/minusOp_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     6.843    U/minusOp_carry__2_n_0
+    SLICE_X37Y5          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.957 r  U/minusOp_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     6.957    U/minusOp_carry__3_n_0
+    SLICE_X37Y6          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.071 r  U/minusOp_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     7.071    U/minusOp_carry__4_n_0
+    SLICE_X37Y7          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.185 r  U/minusOp_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     7.185    U/minusOp_carry__5_n_0
+    SLICE_X37Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.299 r  U/minusOp_carry__6/CO[3]
+                         net (fo=1, routed)           0.000     7.299    U/minusOp_carry__6_n_0
+    SLICE_X37Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.413 r  U/minusOp_carry__7/CO[3]
+                         net (fo=1, routed)           0.000     7.413    U/minusOp_carry__7_n_0
+    SLICE_X37Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.527 r  U/minusOp_carry__8/CO[3]
+                         net (fo=1, routed)           0.000     7.527    U/minusOp_carry__8_n_0
+    SLICE_X37Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.641 r  U/minusOp_carry__9/CO[3]
+                         net (fo=1, routed)           0.000     7.641    U/minusOp_carry__9_n_0
+    SLICE_X37Y12         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.755 r  U/minusOp_carry__10/CO[3]
+                         net (fo=1, routed)           0.000     7.755    U/minusOp_carry__10_n_0
+    SLICE_X37Y13         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.869 r  U/minusOp_carry__11/CO[3]
+                         net (fo=1, routed)           0.000     7.869    U/minusOp_carry__11_n_0
+    SLICE_X37Y14         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     7.983 r  U/minusOp_carry__12/CO[3]
+                         net (fo=1, routed)           0.000     7.983    U/minusOp_carry__12_n_0
+    SLICE_X37Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.097 r  U/minusOp_carry__13/CO[3]
+                         net (fo=1, routed)           0.000     8.097    U/minusOp_carry__13_n_0
+    SLICE_X37Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.211 r  U/minusOp_carry__14/CO[3]
+                         net (fo=1, routed)           0.000     8.211    U/minusOp_carry__14_n_0
+    SLICE_X37Y17         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.325 r  U/minusOp_carry__15/CO[3]
+                         net (fo=1, routed)           0.000     8.325    U/minusOp_carry__15_n_0
+    SLICE_X37Y18         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.439 r  U/minusOp_carry__16/CO[3]
+                         net (fo=1, routed)           0.000     8.439    U/minusOp_carry__16_n_0
+    SLICE_X37Y19         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.553 r  U/minusOp_carry__17/CO[3]
+                         net (fo=1, routed)           0.000     8.553    U/minusOp_carry__17_n_0
+    SLICE_X37Y20         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.667 r  U/minusOp_carry__18/CO[3]
+                         net (fo=1, routed)           0.000     8.667    U/minusOp_carry__18_n_0
+    SLICE_X37Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.781 r  U/minusOp_carry__19/CO[3]
+                         net (fo=1, routed)           0.000     8.781    U/minusOp_carry__19_n_0
+    SLICE_X37Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.895 r  U/minusOp_carry__20/CO[3]
+                         net (fo=1, routed)           0.000     8.895    U/minusOp_carry__20_n_0
+    SLICE_X37Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.009 r  U/minusOp_carry__21/CO[3]
+                         net (fo=1, routed)           0.000     9.009    U/minusOp_carry__21_n_0
+    SLICE_X37Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.123 r  U/minusOp_carry__22/CO[3]
+                         net (fo=1, routed)           0.009     9.132    U/minusOp_carry__22_n_0
+    SLICE_X37Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.246 r  U/minusOp_carry__23/CO[3]
+                         net (fo=1, routed)           0.000     9.246    U/minusOp_carry__23_n_0
+    SLICE_X37Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.360 r  U/minusOp_carry__24/CO[3]
+                         net (fo=1, routed)           0.000     9.360    U/minusOp_carry__24_n_0
+    SLICE_X37Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.474 r  U/minusOp_carry__25/CO[3]
+                         net (fo=1, routed)           0.000     9.474    U/minusOp_carry__25_n_0
+    SLICE_X37Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.588 r  U/minusOp_carry__26/CO[3]
+                         net (fo=1, routed)           0.000     9.588    U/minusOp_carry__26_n_0
+    SLICE_X37Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.702 r  U/minusOp_carry__27/CO[3]
+                         net (fo=1, routed)           0.000     9.702    U/minusOp_carry__27_n_0
+    SLICE_X37Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.816 r  U/minusOp_carry__28/CO[3]
+                         net (fo=1, routed)           0.000     9.816    U/minusOp_carry__28_n_0
+    SLICE_X37Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     9.930 r  U/minusOp_carry__29/CO[3]
+                         net (fo=1, routed)           0.000     9.930    U/minusOp_carry__29_n_0
+    SLICE_X37Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.044 r  U/minusOp_carry__30/CO[3]
+                         net (fo=1, routed)           0.000    10.044    U/minusOp_carry__30_n_0
+    SLICE_X37Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.158 r  U/minusOp_carry__31/CO[3]
+                         net (fo=1, routed)           0.000    10.158    U/minusOp_carry__31_n_0
+    SLICE_X37Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.272 r  U/minusOp_carry__32/CO[3]
+                         net (fo=1, routed)           0.000    10.272    U/minusOp_carry__32_n_0
+    SLICE_X37Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.386 r  U/minusOp_carry__33/CO[3]
+                         net (fo=1, routed)           0.000    10.386    U/minusOp_carry__33_n_0
+    SLICE_X37Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.500 r  U/minusOp_carry__34/CO[3]
+                         net (fo=1, routed)           0.000    10.500    U/minusOp_carry__34_n_0
+    SLICE_X37Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.614 r  U/minusOp_carry__35/CO[3]
+                         net (fo=1, routed)           0.000    10.614    U/minusOp_carry__35_n_0
+    SLICE_X37Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.728 r  U/minusOp_carry__36/CO[3]
+                         net (fo=1, routed)           0.000    10.728    U/minusOp_carry__36_n_0
+    SLICE_X37Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.842 r  U/minusOp_carry__37/CO[3]
+                         net (fo=1, routed)           0.000    10.842    U/minusOp_carry__37_n_0
+    SLICE_X37Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.956 r  U/minusOp_carry__38/CO[3]
+                         net (fo=1, routed)           0.000    10.956    U/minusOp_carry__38_n_0
+    SLICE_X37Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.070 r  U/minusOp_carry__39/CO[3]
+                         net (fo=1, routed)           0.000    11.070    U/minusOp_carry__39_n_0
+    SLICE_X37Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.184 r  U/minusOp_carry__40/CO[3]
+                         net (fo=1, routed)           0.000    11.184    U/minusOp_carry__40_n_0
+    SLICE_X37Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.298 r  U/minusOp_carry__41/CO[3]
+                         net (fo=1, routed)           0.000    11.298    U/minusOp_carry__41_n_0
+    SLICE_X37Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.412 r  U/minusOp_carry__42/CO[3]
+                         net (fo=1, routed)           0.000    11.412    U/minusOp_carry__42_n_0
+    SLICE_X37Y45         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.526 r  U/minusOp_carry__43/CO[3]
+                         net (fo=1, routed)           0.000    11.526    U/minusOp_carry__43_n_0
+    SLICE_X37Y46         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.640 r  U/minusOp_carry__44/CO[3]
+                         net (fo=1, routed)           0.000    11.640    U/minusOp_carry__44_n_0
+    SLICE_X37Y47         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.754 r  U/minusOp_carry__45/CO[3]
+                         net (fo=1, routed)           0.000    11.754    U/minusOp_carry__45_n_0
+    SLICE_X37Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.868 r  U/minusOp_carry__46/CO[3]
+                         net (fo=1, routed)           0.000    11.868    U/minusOp_carry__46_n_0
+    SLICE_X37Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    11.982 r  U/minusOp_carry__47/CO[3]
+                         net (fo=1, routed)           0.001    11.983    U/minusOp_carry__47_n_0
+    SLICE_X37Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.097 r  U/minusOp_carry__48/CO[3]
+                         net (fo=1, routed)           0.000    12.097    U/minusOp_carry__48_n_0
+    SLICE_X37Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.211 r  U/minusOp_carry__49/CO[3]
+                         net (fo=1, routed)           0.000    12.211    U/minusOp_carry__49_n_0
+    SLICE_X37Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.325 r  U/minusOp_carry__50/CO[3]
+                         net (fo=1, routed)           0.000    12.325    U/minusOp_carry__50_n_0
+    SLICE_X37Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.439 r  U/minusOp_carry__51/CO[3]
+                         net (fo=1, routed)           0.000    12.439    U/minusOp_carry__51_n_0
+    SLICE_X37Y54         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.553 r  U/minusOp_carry__52/CO[3]
+                         net (fo=1, routed)           0.000    12.553    U/minusOp_carry__52_n_0
+    SLICE_X37Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.667 r  U/minusOp_carry__53/CO[3]
+                         net (fo=1, routed)           0.000    12.667    U/minusOp_carry__53_n_0
+    SLICE_X37Y56         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.781 r  U/minusOp_carry__54/CO[3]
+                         net (fo=1, routed)           0.000    12.781    U/minusOp_carry__54_n_0
+    SLICE_X37Y57         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.895 r  U/minusOp_carry__55/CO[3]
+                         net (fo=1, routed)           0.000    12.895    U/minusOp_carry__55_n_0
+    SLICE_X37Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.009 r  U/minusOp_carry__56/CO[3]
+                         net (fo=1, routed)           0.000    13.009    U/minusOp_carry__56_n_0
+    SLICE_X37Y59         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.123 r  U/minusOp_carry__57/CO[3]
+                         net (fo=1, routed)           0.000    13.123    U/minusOp_carry__57_n_0
+    SLICE_X37Y60         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.237 r  U/minusOp_carry__58/CO[3]
+                         net (fo=1, routed)           0.000    13.237    U/minusOp_carry__58_n_0
+    SLICE_X37Y61         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.351 r  U/minusOp_carry__59/CO[3]
+                         net (fo=1, routed)           0.000    13.351    U/minusOp_carry__59_n_0
+    SLICE_X37Y62         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.465 r  U/minusOp_carry__60/CO[3]
+                         net (fo=1, routed)           0.000    13.465    U/minusOp_carry__60_n_0
+    SLICE_X37Y63         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.579 r  U/minusOp_carry__61/CO[3]
+                         net (fo=1, routed)           0.000    13.579    U/minusOp_carry__61_n_0
+    SLICE_X37Y64         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    13.913 f  U/minusOp_carry__62/O[1]
+                         net (fo=1, routed)           0.302    14.215    U/minusOp_carry__62_n_6
+    SLICE_X38Y64         LUT2 (Prop_lut2_I1_O)        0.303    14.518 r  U/MODE_4.Q[254]_i_1/O
+                         net (fo=1, routed)           0.000    14.518    U/MODE_4.Q[254]_i_1_n_0
+    SLICE_X38Y64         FDCE                                         r  U/MODE_4.Q_reg[254]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)        5.000     5.000 r  
+    U14                                               0.000     5.000 r  CLK (IN)
+                         net (fo=0)                   0.000     5.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912     5.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880     7.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     7.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=514, routed)         1.560     9.442    U/CLK
+    SLICE_X38Y64         FDCE                                         r  U/MODE_4.Q_reg[254]/C
+                         clock pessimism              0.340     9.783    
+                         clock uncertainty           -0.035     9.747    
+    SLICE_X38Y64         FDCE (Setup_fdce_C_D)        0.077     9.824    U/MODE_4.Q_reg[254]
+  -------------------------------------------------------------------
+                         required time                          9.824    
+                         arrival time                         -14.518    
+  -------------------------------------------------------------------
+                         slack                                 -4.693    
+
+
+
+

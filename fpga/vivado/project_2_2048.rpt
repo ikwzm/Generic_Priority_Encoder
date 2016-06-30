@@ -1,0 +1,113 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 15:29:01 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_2_2048.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |       3416 |       3416 |       0 |    0 | 4098 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 | 2049 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |       3415 |       3415 |       0 |    0 | 2049 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+------+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 15:29:13 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_2_2048.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.503ns  (required time - arrival time)
+  Source:                 I_REG_reg[805]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            U/MODE_2.Q_reg[1192]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (CLK rise@10.000ns - CLK rise@0.000ns)
+  Data Path Delay:        9.306ns  (logic 2.175ns (23.373%)  route 7.131ns (76.627%))
+  Logic Levels:           7  (LUT2=1 LUT3=1 LUT4=2 LUT6=3)
+  Clock Path Skew:        -0.231ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.387ns = ( 14.387 - 10.000 ) 
+    Source Clock Delay      (SCD):    4.972ns
+    Clock Pessimism Removal (CPR):    0.354ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=4098, routed)        1.749     4.972    CLK_IBUF_BUFG
+    SLICE_X37Y11         FDCE                                         r  I_REG_reg[805]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y11         FDCE (Prop_fdce_C_Q)         0.419     5.391 f  I_REG_reg[805]/Q
+                         net (fo=7, routed)           1.238     6.629    U/Q[805]
+    SLICE_X34Y10         LUT4 (Prop_lut4_I3_O)        0.331     6.960 f  U/MODE_2.Q[831]_i_8/O
+                         net (fo=1, routed)           0.492     7.452    U/MODE_2.Q[831]_i_8_n_0
+    SLICE_X30Y10         LUT6 (Prop_lut6_I5_O)        0.355     7.807 f  U/MODE_2.Q[831]_i_6/O
+                         net (fo=2, routed)           0.823     8.630    U/MODE_2.Q[831]_i_6_n_0
+    SLICE_X28Y11         LUT6 (Prop_lut6_I0_O)        0.124     8.754 f  U/MODE_2.Q[895]_i_7/O
+                         net (fo=6, routed)           1.114     9.868    U/MODE_2.Q[895]_i_7_n_0
+    SLICE_X25Y17         LUT4 (Prop_lut4_I3_O)        0.150    10.018 f  U/MODE_2.Q[1283]_i_3/O
+                         net (fo=6, routed)           1.452    11.469    U/MODE_2.Q[1283]_i_3_n_0
+    SLICE_X15Y27         LUT6 (Prop_lut6_I3_O)        0.326    11.795 f  U/MODE_2.Q[1155]_i_2/O
+                         net (fo=10, routed)          1.015    12.810    U/MODE_2.Q[1155]_i_2_n_0
+    SLICE_X12Y37         LUT2 (Prop_lut2_I1_O)        0.116    12.926 f  U/MODE_2.Q[1199]_i_4/O
+                         net (fo=16, routed)          0.997    13.924    U/MODE_2.Q[1199]_i_4_n_0
+    SLICE_X7Y39          LUT3 (Prop_lut3_I1_O)        0.354    14.278 r  U/MODE_2.Q[1192]_i_1/O
+                         net (fo=1, routed)           0.000    14.278    U/MODE_2.Q[1192]_i_1_n_0
+    SLICE_X7Y39          FDCE                                         r  U/MODE_2.Q_reg[1192]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)       10.000    10.000 r  
+    U14                                               0.000    10.000 r  CLK (IN)
+                         net (fo=0)                   0.000    10.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912    10.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880    12.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=4098, routed)        1.504    14.387    U/CLK
+    SLICE_X7Y39          FDCE                                         r  U/MODE_2.Q_reg[1192]/C
+                         clock pessimism              0.354    14.741    
+                         clock uncertainty           -0.035    14.706    
+    SLICE_X7Y39          FDCE (Setup_fdce_C_D)        0.075    14.781    U/MODE_2.Q_reg[1192]
+  -------------------------------------------------------------------
+                         required time                         14.781    
+                         arrival time                         -14.278    
+  -------------------------------------------------------------------
+                         slack                                  0.503    
+
+
+
+

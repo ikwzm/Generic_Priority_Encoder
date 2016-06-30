@@ -1,0 +1,109 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:54:34 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./project_5_0384.rpt
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010clg400-1
+| Design State : Routed
+------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+|             Instance            |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+| PRIORITY_ENCODER_SYNTH_TEST     |            (top) |       1070 |       1070 |       0 |    0 | 770 |      0 |      0 |            0 |
+|   (PRIORITY_ENCODER_SYNTH_TEST) |            (top) |          1 |          1 |       0 |    0 | 385 |      0 |      0 |            0 |
+|   U                             | PRIORITY_ENCODER |       1069 |       1069 |       0 |    0 | 385 |      0 |      0 |            0 |
++---------------------------------+------------------+------------+------------+---------+------+-----+--------+--------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (win64) Build 1538259 Fri Apr  8 15:45:27 MDT 2016
+| Date         : Thu Jun 30 14:54:45 2016
+| Host         : DESKTOP-4KPN332 running 64-bit major release  (build 9200)
+| Command      : report_timing -setup -file ./project_5_0384.rpt -append
+| Design       : PRIORITY_ENCODER_SYNTH_TEST
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.482ns  (required time - arrival time)
+  Source:                 I_REG_reg[4]/C
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            U/MODE_5.Q_reg[382]/D
+                            (rising edge-triggered cell FDCE clocked by CLK  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (CLK rise@5.000ns - CLK rise@0.000ns)
+  Data Path Delay:        5.340ns  (logic 1.211ns (22.677%)  route 4.129ns (77.323%))
+  Logic Levels:           5  (LUT3=1 LUT4=2 LUT6=2)
+  Clock Path Skew:        -0.137ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.381ns = ( 9.381 - 5.000 ) 
+    Source Clock Delay      (SCD):    4.973ns
+    Clock Pessimism Removal (CPR):    0.455ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+    U14                                               0.000     0.000 r  CLK (IN)
+                         net (fo=0)                   0.000     0.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         1.046     1.046 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.122    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.223 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=770, routed)         1.750     4.973    CLK_IBUF_BUFG
+    SLICE_X41Y12         FDCE                                         r  I_REG_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y12         FDCE (Prop_fdce_C_Q)         0.419     5.392 f  I_REG_reg[4]/Q
+                         net (fo=5, routed)           0.682     6.074    U/Q[4]
+    SLICE_X40Y12         LUT4 (Prop_lut4_I0_O)        0.296     6.370 f  U/MODE_5.Q[191]_i_30/O
+                         net (fo=1, routed)           0.899     7.270    U/MODE_5.Q[191]_i_30_n_0
+    SLICE_X35Y14         LUT4 (Prop_lut4_I3_O)        0.124     7.394 f  U/MODE_5.Q[191]_i_9/O
+                         net (fo=1, routed)           0.781     8.174    U/MODE_5.Q[191]_i_9_n_0
+    SLICE_X34Y16         LUT6 (Prop_lut6_I4_O)        0.124     8.298 f  U/MODE_5.Q[191]_i_2/O
+                         net (fo=130, routed)         0.776     9.074    U/MODE_5.Q[191]_i_2_n_0
+    SLICE_X35Y18         LUT6 (Prop_lut6_I3_O)        0.124     9.198 r  U/MODE_5.Q[383]_i_2/O
+                         net (fo=64, routed)          0.991    10.189    U/MODE_5.Q[383]_i_2_n_0
+    SLICE_X35Y10         LUT3 (Prop_lut3_I0_O)        0.124    10.313 r  U/MODE_5.Q[382]_i_1/O
+                         net (fo=1, routed)           0.000    10.313    U/o_data[382]
+    SLICE_X35Y10         FDCE                                         r  U/MODE_5.Q_reg[382]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)        5.000     5.000 r  
+    U14                                               0.000     5.000 r  CLK (IN)
+                         net (fo=0)                   0.000     5.000    CLK
+    U14                  IBUF (Prop_ibuf_I_O)         0.912     5.912 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.880     7.792    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     7.883 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=770, routed)         1.498     9.381    U/CLK
+    SLICE_X35Y10         FDCE                                         r  U/MODE_5.Q_reg[382]/C
+                         clock pessimism              0.455     9.836    
+                         clock uncertainty           -0.035     9.801    
+    SLICE_X35Y10         FDCE (Setup_fdce_C_D)        0.031     9.832    U/MODE_5.Q_reg[382]
+  -------------------------------------------------------------------
+                         required time                          9.832    
+                         arrival time                         -10.313    
+  -------------------------------------------------------------------
+                         slack                                 -0.482    
+
+
+
+

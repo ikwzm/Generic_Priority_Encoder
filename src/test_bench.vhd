@@ -2,12 +2,12 @@
 --!     @file    test_bench.vhd
 --!     @brief   TEST BENCH for Priority Encoder Procedures :
 --!              Priority Encoder Procedurs Packageを検証するためのテストベンチ.
---!     @version 1.5.1
---!     @date    2013/8/9
+--!     @version 0.0.1
+--!     @date    2016/6/30
 --!     @author  Ichiro Kawazome <ichiro_k@ca2.so-net.ne.jp>
 -----------------------------------------------------------------------------------
 --
---      Copyright (C) 2013 Ichiro Kawazome
+--      Copyright (C) 2016 Ichiro Kawazome
 --      All rights reserved.
 --
 --      Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@ use     ieee.std_logic_1164.all;
 package COMPONENTS is
     component TEST_BENCH
         generic (
-            MSB         : boolean := FALSE;
+            MODE        : integer range 1 to 5 := 1;
             L           : integer := 0;
             H           : integer := 31;
             VERBOSE     : boolean := FALSE;
@@ -61,7 +61,7 @@ library ieee;
 use     ieee.std_logic_1164.all;
 entity  TEST_BENCH is
     generic (
-        MSB         : boolean := FALSE;
+        MODE        : integer range 1 to 5 := 1;
         L           : integer := 0;
         H           : integer := 31;
         VERBOSE     : boolean := FALSE;
@@ -78,45 +78,56 @@ library ieee;
 use     ieee.std_logic_1164.all;
 use     ieee.numeric_std.all; 
 use     std.textio.all;
-use     Work.Priority_Encoder_Procedures.Priority_Encode_To_Binary_Intricately;
 library DUMMY_PLUG;
 use     DUMMY_PLUG.MT19937AR.all;
 use     DUMMY_PLUG.UTIL.BIN_TO_STRING;
 use     DUMMY_PLUG.UTIL.HEX_TO_STRING;
 use     DUMMY_PLUG.UTIL.INTEGER_TO_STRING;
 architecture stimulus of TEST_BENCH is
+    -------------------------------------------------------------------------------
+    --
+    -------------------------------------------------------------------------------
+    signal      CLK   :  std_logic;
+    signal      RST   :  std_logic;
+    signal      D     :  std_logic_vector(H downto L);
+    signal      Q     :  std_logic_vector(H downto L);
+    signal      Z     :  std_logic;
+    -------------------------------------------------------------------------------
+    --
+    -------------------------------------------------------------------------------
     function    MESSAGE_TAG return STRING is
     begin
-        if (MSB = TRUE) then
-            return "(MSB" & 
-                    ",H="  & INTEGER_TO_STRING(H  ) &
-                    ",L="  & INTEGER_TO_STRING(L  ) &
-                   ")";
-        else
-            return "(LSB" & 
-                    ",H="  & INTEGER_TO_STRING(H  ) &
-                    ",L="  & INTEGER_TO_STRING(L  ) &
-                   ")";
-        end if;
+        return "(M="  & INTEGER_TO_STRING(MODE) &
+               ",H="  & INTEGER_TO_STRING(H   ) &
+               ",L="  & INTEGER_TO_STRING(L   ) &
+               ")";
     end function;
+    -------------------------------------------------------------------------------
+    --
+    -------------------------------------------------------------------------------
+    component PRIORITY_ENCODER is
+        generic (
+            MODE    : integer :=   1;
+            LOW     : integer :=   0;
+            HIGH    : integer :=  63
+        );
+        port (
+            CLK     : in  std_logic;
+            RST     : in  std_logic;
+            D       : in  std_logic_vector(HIGH downto LOW);
+            Q       : out std_logic_vector(HIGH downto LOW);
+            Z       : out std_logic
+        );
+    end component;
 begin
+    -------------------------------------------------------------------------------
+    -- 
+    -------------------------------------------------------------------------------
+    DUT: PRIORITY_ENCODER generic map(MODE, L, H) port map(CLK, RST, D, Q, Z);
     -------------------------------------------------------------------------------
     -- テスト開始
     -------------------------------------------------------------------------------
     process
-        ---------------------------------------------------------------------------
-        --
-        ---------------------------------------------------------------------------
-        function  CALC_O_WIDTH return integer is
-            variable width : integer;
-        begin
-            width := 0;
-            while 2**width <= H loop
-                width := width + 1;
-            end loop;
-            return width;
-        end function;
-        constant  O_WIDTH : integer := CALC_O_WIDTH;
         ---------------------------------------------------------------------------
         --
         ---------------------------------------------------------------------------
@@ -127,62 +138,33 @@ begin
         ---------------------------------------------------------------------------
         --
         ---------------------------------------------------------------------------
-        procedure ENCODE(
-            I : in  std_logic_vector;
-            O : out std_logic_vector;
-            V : out std_logic
-        ) is
-        begin
-            Priority_Encode_To_Binary_Intricately(
-                High_to_Low => MSB,
-                Binary_Len  => O'length,
-                Reduce_Len  => 4,
-                Min_Dec_Len => 4,
-                Max_Dec_Len => 8,
-                Data        => I,
-                Output      => O,
-                Valid       => V
-            );
-        end procedure;
-        ---------------------------------------------------------------------------
-        --
-        ---------------------------------------------------------------------------
         procedure CHECK(I_DATA  : in  std_logic_vector) is
-            variable  gen_data  : std_logic_vector(O_WIDTH-1 downto 0);
-            variable  exp_data  : std_logic_vector(O_WIDTH-1 downto 0);
+            variable  gen_data  : std_logic_vector(H downto L);
+            variable  exp_data  : std_logic_vector(H downto L);
             variable  gen_valid : std_logic;
             variable  exp_valid : std_logic;
         begin
-            ENCODE(I_DATA,gen_data,gen_valid);
-            if VERBOSE then
-                assert (FALSE)
-                    report MESSAGE_TAG &
-                           "Mismtch Input="  & HEX_TO_STRING(I_DATA   ) &
-                                 ", Output=" & HEX_TO_STRING(gen_data ) &
-                                 ", Valid="  & BIN_TO_STRING(gen_valid)
-                    severity NOTE;
-            end if;
-            if MSB = TRUE then
-                exp_data  := (others => '0');
-                exp_valid := '0';
-                for i in I_DATA'high downto I_DATA'low loop
-                    if (I_DATA(i) = '1') then
-                        exp_data  := std_logic_vector(to_unsigned(i,O_WIDTH));
-                        exp_valid := '1';
-                        exit;
-                    end if;
-                end loop;
-            else
-                exp_data  := (others => '0');
-                exp_valid := '0';
-                for i in I_DATA'low to I_DATA'high loop
-                    if (I_DATA(i) = '1') then
-                        exp_data  := std_logic_vector(to_unsigned(i,O_WIDTH));
-                        exp_valid := '1';
-                        exit;
-                    end if;
-                end loop;
-            end if;
+            D <= I_DATA;
+            wait until(CLK'event and CLK = '1');
+            wait until(CLK'event and CLK = '1');
+            wait until(CLK'event and CLK = '1');
+            gen_data  := Q;
+            gen_valid := not Z;
+            assert (VERBOSE = FALSE)
+                report MESSAGE_TAG &
+                       "Check Input="  & HEX_TO_STRING(I_DATA   ) &
+                           ", Output=" & HEX_TO_STRING(gen_data ) &
+                           ", Valid="  & BIN_TO_STRING(gen_valid)
+                severity NOTE;
+            exp_data  := (others => '0');
+            exp_valid := '0';
+            for i in I_DATA'low to I_DATA'high loop
+                if (I_DATA(i) = '1') then
+                    exp_data(i) := '1';
+                    exp_valid   := '1';
+                    exit;
+                end if;
+            end loop;
             if (gen_data /= exp_data) or (gen_valid /= exp_valid) then
                 mismatch := mismatch + 1;
             end if;
@@ -200,6 +182,10 @@ begin
                 severity ERROR;
         end procedure;
     begin
+        RST <= '1';
+        wait until (CLK'event and CLK = '1');
+        RST <= '0';
+        wait until (CLK'event and CLK = '1');
         mismatch := 0;
         for pos in i_data'range loop
             i_data := (others => '0');
@@ -209,19 +195,19 @@ begin
         for pos in i_data'range loop
             i_data := (others => '0');
             i_data(pos) := '1';
-            if MSB then
-                if (pos > i_data'low) then
-                    i_data(pos-1 downto i_data'low ) := (pos-1 downto i_data'low => '1');
-                end if;
-            else
-                if (pos < i_data'high) then
-                    i_data(i_data'high downto pos+1) := (i_data'high downto pos+1 => '1');
-                end if;
+            if (pos < i_data'high) then
+                i_data(i_data'high downto pos+1) := (i_data'high downto pos+1 => '1');
             end if;
             CHECK(i_data);
         end loop;
         for count in 0 to 100 loop
-            GENERATE_RANDOM_STD_LOGIC_VECTOR(rnd_gen, rnd_data);
+            for n in 0 to (rnd_data'length+31)/32 loop
+                if 32*(n+1)-1 >  rnd_data'high then
+                    GENERATE_RANDOM_STD_LOGIC_VECTOR(rnd_gen, rnd_data(rnd_data'high downto 32*n));
+                else
+                    GENERATE_RANDOM_STD_LOGIC_VECTOR(rnd_gen, rnd_data(   32*(n+1)-1 downto 32*n));
+                end if;
+            end loop;
             i_data := rnd_data;
             CHECK(i_data);
         end loop;
@@ -235,6 +221,15 @@ begin
             assert(mismatch>0) report MESSAGE_TAG & "Run complete..." severity FAILURE;
         end if;
         wait;
+    end process;
+    -------------------------------------------------------------------------------
+    --
+    -------------------------------------------------------------------------------
+    process begin
+        CLK <= '0';
+        wait for 5 ns;
+        CLK <= '1';
+        wait for 5 ns;
     end process;
 end stimulus;
 -----------------------------------------------------------------------------------
@@ -250,22 +245,12 @@ use     WORK.COMPONENTS.TEST_BENCH;
 architecture MODEL of TEST_BENCH_ALL is
     signal FINISH : std_logic;
 begin
-    L_GEN: for L in 0 to 3  generate
-    H_GEN: for W in 4 to 32 generate
-        MSB_TB:TEST_BENCH
+    M_GEN: for M in 1 to 4  generate
+    L_GEN: for L in 0 to 2  generate
+    H_GEN: for W in 4 to 8  generate
+        TB:TEST_BENCH
             generic map(
-                MSB         => TRUE ,
-                L           => L,
-                H           => L+W-1,
-                VERBOSE     => FALSE,
-                AUTO_FINISH => FALSE
-            )
-            port map (
-                FINISH      => FINISH
-            );
-        LSB_TB:TEST_BENCH
-            generic map(
-                MSB         => FALSE,
+                MODE        => M,
                 L           => L,
                 H           => L+W-1,
                 VERBOSE     => FALSE,
@@ -276,6 +261,62 @@ begin
             );
     end generate;
     end generate;
+    end generate;
+    TB_5_32:TEST_BENCH
+        generic map(
+            MODE        => 5,
+            L           => 0,
+            H           => 31,
+            VERBOSE     => FALSE,
+            AUTO_FINISH => FALSE
+        )
+        port map (
+            FINISH      => FINISH
+        );
+    TB_5_64:TEST_BENCH
+        generic map(
+            MODE        => 5,
+            L           => 0,
+            H           => 63,
+            VERBOSE     => FALSE,
+            AUTO_FINISH => FALSE
+        )
+        port map (
+            FINISH      => FINISH
+        );
+    TB_5_128:TEST_BENCH
+        generic map(
+            MODE        => 5,
+            L           => 0,
+            H           => 127,
+            VERBOSE     => FALSE,
+            AUTO_FINISH => FALSE
+        )
+        port map (
+            FINISH      => FINISH
+        );
+    TB_5_256:TEST_BENCH
+        generic map(
+            MODE        => 5,
+            L           => 0,
+            H           => 255,
+            VERBOSE     => FALSE,
+            AUTO_FINISH => FALSE
+        )
+        port map (
+            FINISH      => FINISH
+        );
+    TB_5_512:TEST_BENCH
+        generic map(
+            MODE        => 5,
+            L           => 0,
+            H           => 511,
+            VERBOSE     => FALSE,
+            AUTO_FINISH => FALSE
+        )
+        port map (
+            FINISH      => FINISH
+        );
     FINISH <= 'H' after 1 ns;
     process (FINISH) begin
         if (FINISH'event and FINISH = 'H') then

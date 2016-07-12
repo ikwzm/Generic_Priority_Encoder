@@ -14,9 +14,29 @@ Generic Priority Encoder
 ## Introduction
 
 
-Priority Encoder とは、あるビット列が与えられて、そのビット列をLSBまたはNSBから探索して最初に1だったところを見つけます。見つかった位置を数字(Binary Integer)で返すものを Priority Encoder と言います。また、数字で返さずに、入力されたビット列のうち、最初に1だったところのみ1にして後は全部0にして返す場合もあります。
+Priority Encoder とは、あるビット列が与えられて、そのビット列をLSB(またはMSB)から探索して最初に1だったところを見つけます。見つかった位置を数字(Binary Integer)で返すものを Priority Encoder と言います。
 
-この記事では、このPriority Encoder のビット列の大きさが Generic 変数で与えられた１ビット〜1024ビット超の可変値とした時のVHDL の記述方法と、それを論理合成した時の結果を示します。
+
+![Fig.1 Primary (Binary Integer) Encoder](./readme.img/akgeo1.jpg "Fig.1 Primary (Binary Integer) Encoder")
+
+Fig.1 Primary (Binary Integer) Encoder
+
+<br />
+
+
+
+また、数字で返さずに、入力されたビット列のうち、最初に1だったところのみ1にして後は全部0にして返す場合(One Hot)もあります。
+
+
+![Fig.2 Primary (One Hot) Encoder](./readme.img/akgeo2.jpg "Fig.2 Primary (One Hot) Encoder")
+
+Fig.2 Primary (One Hot) Encoder
+
+<br />
+
+
+
+この記事では、このPriority (One Hot) Encoder のビット列の大きさが Generic 変数で与えられた１ビット〜1024ビット超の可変値とした時のVHDL の記述方法と、それを論理合成した時の結果を示します。
 
 
 ## Licensing
@@ -38,7 +58,7 @@ VHDL の For-loop は exit 文でループを脱出することが出来ます�
 
 
 ```VHDL:sample1.vhd
-     procedure Priority_Encode_To_OneHot_Use_Exit(
+    procedure Priority_Encode_To_OneHot_Use_Exit(
                  Data        : in  std_logic_vector;
         variable Output      : out std_logic_vector;
         variable Valid       : out std_logic
@@ -105,6 +125,13 @@ VHDL の For-loop は exit 文でループを脱出することが出来ます�
 
 1. 入力データの自分と同じ位置にあるビットが1の場合
 2. 入力データの自分より前の位置のビットが全て0の場合
+
+
+![Fig.3 For-loop with or-reduce ](./readme.img/akgeo3.jpg "Fig.3 For-loop with or-reduce ")
+
+Fig.3 For-loop with or-reduce 
+
+<br />
 
 
 
@@ -183,9 +210,9 @@ VHDL の For-loop は exit 文でループを脱出することが出来ます�
 ここではビット長がある程度大きい場合を想定して、並列処理することを考えましょう。主な考え方は次の図の通りです。
 
 
-![Fig.1 Parallel and Recursive Priority Encoder Diagram](./readme.img/akgeo1.jpg "Fig.1 Parallel and Recursive Priority Encoder Diagram")
+![Fig.4 Parallel and Recursive Priority Encoder Diagram](./readme.img/akgeo4.jpg "Fig.4 Parallel and Recursive Priority Encoder Diagram")
 
-Fig.1 Parallel and Recursive Priority Encoder Diagram
+Fig.4 Parallel and Recursive Priority Encoder Diagram
 
 <br />
 

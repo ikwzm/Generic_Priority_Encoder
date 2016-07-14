@@ -139,7 +139,7 @@ architecture RTL of PRIORITY_ENCODER is
     -------------------------------------------------------------------------------
     --
     -------------------------------------------------------------------------------
-    procedure Priority_Encode_To_OneHot_Use_Decriment(
+    procedure Priority_Encode_To_OneHot_Use_Decrement(
                  Data        : in  std_logic_vector;
         variable Output      : out std_logic_vector;
         variable Valid       : out std_logic
@@ -169,7 +169,7 @@ architecture RTL of PRIORITY_ENCODER is
     ) is
     begin
         if Data'length >= Min_Dec_Len then
-            Priority_Encode_To_OneHot_Use_Decriment(
+            Priority_Encode_To_OneHot_Use_Decrement(
                 Data        => Data       ,
                 Output      => Output     ,
                 Valid       => Valid
@@ -297,7 +297,7 @@ begin
                 Q      <= (others => '0');
                 Z      <= '0';
             elsif (CLK'event and CLK = '1') then
-                Priority_Encode_To_OneHot_Use_Decriment(
+                Priority_Encode_To_OneHot_Use_Decrement(
                     Data        => D,
                     Output      => q_data,
                     Valid       => q_valid

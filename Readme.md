@@ -165,14 +165,14 @@ Fig.3 For-loop with or-reduce
 
 
 
-## 4. Use Decriment
+## 4. Use Decrement
 
 
 これは For-loop を使わずに加算器(減算器)を使って該当するビットのみ1にする方法です。
 
 
 ```VHDL:sample4.vhd
-    procedure Priority_Encode_To_OneHot_Use_Decriment(
+    procedure Priority_Encode_To_OneHot_Use_Decrement(
                  Data        : in  std_logic_vector;
         variable Output      : out std_logic_vector;
         variable Valid       : out std_logic
@@ -234,7 +234,7 @@ Fig.4 Parallel and Recursive Priority Encoder Diagram
     ) is
     begin
         if Data'length >= Min_Dec_Len then
-            Priority_Encode_To_OneHot_Use_Decriment(Data,Output,Valid);
+            Priority_Encode_To_OneHot_Use_Decrement(Data,Output,Valid);
         else
             Priority_Encode_To_OneHot_Use_OrReduce(Data,Output,Valid);
         end if;
@@ -695,7 +695,7 @@ Table.2 Resource (Vivado 2015.4)
 
 
 
-### 4. Use Decriment
+### 4. Use Decrement
 
 
 このアルゴリズムは、Xilinx の FPGA ではあまりうまくいきませんでした。もともと FPGA の加算器はキャリーを伝搬する方式です。Xilinx の FPGA には、キャリー伝搬用の回路と配線は専用のものが用意されていてそれなりに高速なのですが、総遅延時間はビット数に比例するので、ビット数が大きいと、他のアルゴリズムに比べて目に見えて遅くなりました。
@@ -1095,7 +1095,7 @@ Quartus では、上の3つのアルゴリズムでの違いはほとんどあ�
 
 
 
-### 4. Use Decriment
+### 4. Use Decrement
 
 
 Altera の FPGA もキャリー伝搬方式の加算器です。キャリー伝搬用の回路と配線は専用のものが用意されていてそれなりに高速なのですが、総遅延時間はビット数に比例するので、ビット数が大きいとそれに比例して遅くなっています。
